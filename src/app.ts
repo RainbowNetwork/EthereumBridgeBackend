@@ -52,9 +52,7 @@ mongoose
   });
 
 app.use(
-  cors({
-    origin: config.appUrl,
-  })
+  cors()
 );
 
 // const whitelist = [process.env.APP_URL]
@@ -70,6 +68,7 @@ app.use(
 
 // Express configuration
 app.set("port", config.port || 8000);
+app.set("host", config.host || "0.0.0.0");
 
 app.use(compression());
 app.use(bodyParser.json());

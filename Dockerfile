@@ -11,7 +11,7 @@ COPY tsconfig*.json ./
 COPY ./src ./src
 RUN npm ci --quiet && npm run build
 
-FROM node:latest as build
+# FROM node:latest as build
 
 #
 # Production stage.
@@ -21,7 +21,7 @@ FROM node:latest as build
 FROM node:12.13.0-alpine
 
 RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh
+    apk add --no-cache bash git openssh curl
 
 WORKDIR /app
 ENV NODE_ENV=production
@@ -33,7 +33,7 @@ RUN npm ci --quiet --only=production
 COPY --from=builder /usr/src/app/dist ./dist
 
 # COPY .env .
-COPY config .
+COPY config ./config
 
 EXPOSE 8080
 

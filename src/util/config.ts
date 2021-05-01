@@ -5,7 +5,7 @@ import convict from "convict";
 
 const config = convict({
     env: {
-        format: ["production", "dev", "test"],
+        format: ["production", "dev", "testnet"],
         default: "dev",
         arg: "nodeEnv",
         env: "NODE_ENV"
@@ -27,6 +27,12 @@ const config = convict({
         default: "",
         arg: "dbName",
         env: "MONGODB_NAME"
+    },
+    host: {
+        format: String,
+        default: "0.0.0.0",
+        arg: "host",
+        env: "HOST"
     },
     port: {
         format: Number,
