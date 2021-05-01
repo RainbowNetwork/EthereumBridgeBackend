@@ -11,13 +11,13 @@ app.use(errorHandler());
 /**
  * Start Express server.
  */
-const server = app.listen(app.get("port"), () => {
+const server = app.listen(app.get("port"), app.get("host"), () => {
     if (process.env.NODE_ENV === "dev") {
         //setupLocalEnv();
-        logger.info(`App is running at http://localhost:${app.get("port")} in ${app.get("env")} mode`);
+        logger.info(`App is running at http://${app.get("host")}:${app.get("port")} in ${app.get("env")} mode`);
         logger.info("  Press CTRL-C to stop\n");
     } else {
-        logger.info(`App is running at http://localhost:${app.get("port")} in ${app.get("env")} mode`);
+        logger.info(`App is running at http://${app.get("host")}:${app.get("port")} in ${app.get("env")} mode`);
         logger.info("  Press CTRL-C to stop\n");
         //logger.info(`App is running in ${app.get("env")} mode`);
     }
